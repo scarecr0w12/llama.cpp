@@ -17,14 +17,14 @@ FROM ${BASE_ROCM_DEV_CONTAINER} AS build
 # gfx906 is deprecated
 #check https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.4/reference/system-requirements.html
 
-ARG ROCM_DOCKER_ARCH='gfx803,gfx900,gfx906,gfx908,gfx90a,gfx942,gfx1010,gfx1030,gfx1032,gfx1100,gfx1101,gfx1102'
-#ARG ROCM_DOCKER_ARCH=gfx1100
+#ARG ROCM_DOCKER_ARCH='gfx803,gfx900,gfx906,gfx908,gfx90a,gfx942,gfx1010,gfx1030,gfx1032,gfx1100,gfx1101,gfx1102'
+ARG ROCM_DOCKER_ARCH='gfx1010,gfx1030,gfx1032,gfx1100'
 
 # Set nvcc architectured
 ENV AMDGPU_TARGETS=${ROCM_DOCKER_ARCH}
 # Enable ROCm
-# ENV CC=/opt/rocm/llvm/bin/clang
-# ENV CXX=/opt/rocm/llvm/bin/clang++
+ENV CC=/opt/rocm/llvm/bin/clang
+ENV CXX=/opt/rocm/llvm/bin/clang++
 
 RUN apt-get update \
     && apt-get install -y \
